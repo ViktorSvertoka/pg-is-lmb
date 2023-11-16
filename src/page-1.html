@@ -5,24 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./sass/index.scss" />
     <link rel="shortcut icon" href="./images/favicon.ico" />
-    <title>Pagination</title>
+    <title>Load More</title>
   </head>
 
   <body>
     <a class="go__back-btn" href="./index.html">Go back</a>
 
-    <h1>Pagination</h1>
+    <h1>Load More</h1>
 
-    <form class="search-container">
-      <input
-        type="text"
-        id="search-bar"
-        name="searchQuery"
-        placeholder="What can I help you with today?"
-      />
-      <button type="submit">Search</button>
-    </form>
+     <ul class="js-movie-list movie-list">
 
-    <div class="gallery"></div>
+        <div class="button-container">
+      <button class="js-load-more load-more-hidden">Load more</button>
+    </div>
+
+    <script type="module" src="./js/page-1.js"></script>
   </body>
 </html>
