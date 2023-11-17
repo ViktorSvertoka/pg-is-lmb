@@ -5,25 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <link rel="shortcut icon" href="/pg-is-lmb/assets/favicon-9562b06e.ico" />
-    <title>Pagination</title>
-    <link rel="stylesheet" href="/pg-is-lmb/assets/index-3b367c8d.css">
+    <title>Load More</title>
+    <script type="module" crossorigin src="/pg-is-lmb/commonHelpers2.js"></script>
+    <link rel="modulepreload" crossorigin href="/pg-is-lmb/assets/modulepreload-polyfill-3cfb730f.js">
+    <link rel="stylesheet" href="/pg-is-lmb/assets/index-5326593f.css">
   </head>
 
   <body>
     <a class="go__back-btn" href="./index.html">Go back</a>
 
-    <h1>Pagination</h1>
+    <h1>Load More</h1>
 
-    <form class="search-container">
-      <input
-        type="text"
-        id="search-bar"
-        name="searchQuery"
-        placeholder="What can I help you with today?"
-      />
-      <button type="submit">Search</button>
-    </form>
+     <ul class="js-movie-list movie-list">
 
-    <div class="gallery"></div>
+        <div class="button-container">
+      <button class="js-load-more load-more-hidden">Load more</button>
+    </div>
+
+    
   </body>
 </html>
