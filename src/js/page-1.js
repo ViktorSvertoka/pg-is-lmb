@@ -3,63 +3,78 @@ const elements = {
   btnLoad: document.querySelector('.js-load-more'),
 };
 
-let page = 499;
+let page = 1;
+const limit = 10;
 
 elements.btnLoad.addEventListener('click', handlerLoadMore);
 
-function handlerLoadMore() {
-  page += 1;
-  serviceMovie(page).then(data => {
-    elements.list.insertAdjacentHTML('beforeend', createMarkup(data.results));
+async function handlerLoadMore() {
+  try {
+    page += 1;
+    const data = await serviceMovie(page, limit);
 
-    if (data.page >= 500 || data.page >= data.total_pages) {
-      elements.btnLoad.classList.replace('load-more', 'load-more-hidden');
+    elements.list.insertAdjacentHTML('beforeend', createMarkup(data.docs));
+
+    if (page >= data.totalPages) {
+      elements.btnLoad.classList.add('load-more-hidden');
     }
-  });
+  } catch (error) {
+    console.error(error);
+  }
 }
 
-function serviceMovie(page = 1) {
-  const BASE_URL = 'https://api.themoviedb.org/3';
-  const END_POINT = 'trending/movie/week';
-  const API_KEY = '345007f9ab440e5b86cef51be6397df1';
+async function serviceMovie(page = 1, limit = 10) {
+  const BASE_URL = 'https://the-one-api.dev/v2/';
+  const END_POINT = 'character';
+  const BEARER_TOKEN = 'fVhH6jhxy5LdB6Ie2Y7P';
 
   const params = new URLSearchParams({
-    api_key: API_KEY,
     page,
+    limit,
   });
 
-  console.log(params.toString());
-
-  return fetch(`${BASE_URL}/${END_POINT}?${params}`).then(resp => {
-    if (!resp.ok) {
-      throw new Error(resp.statusText || 'Error');
-    }
-
-    return resp.json();
+  const response = await fetch(`${BASE_URL}${END_POINT}?${params}`, {
+    headers: {
+      Authorization: `Bearer ${BEARER_TOKEN}`,
+    },
   });
+
+  if (!response.ok) {
+    throw new Error(response.statusText || 'Error');
+  }
+
+  const data = await response.json();
+
+  return {
+    docs: data.docs,
+    page: data.page,
+    totalPages: Math.ceil(data.total / limit),
+  };
 }
 
-serviceMovie()
-  .then(data => {
-    elements.list.insertAdjacentHTML('afterbegin', createMarkup(data.results));
+async function initialize() {
+  try {
+    const data = await serviceMovie(page, limit);
 
-    if (data.page < data.total_pages) {
-      elements.btnLoad.classList.replace('load-more-hidden', 'load-more');
+    elements.list.insertAdjacentHTML('afterbegin', createMarkup(data.docs));
+
+    if (page < data.totalPages) {
+      elements.btnLoad.classList.remove('load-more-hidden');
     }
-  })
-  .catch(err => console.log(err));
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+initialize();
 
 function createMarkup(arr) {
   return arr
     .map(
-      ({ poster_path, original_title, release_date, vote_average }) => `
-    <li class="movie-card">
-        <img src="https://image.tmdb.org/t/p/w300${poster_path}" alt="${original_title}" />
-        <h2>${original_title}</h2>
-        <div class="movie-info">
-            <p>Release Date: ${release_date}</p>
-            <p>Vote Average: ${vote_average}</p>
-        </div>
+      ({ name, race }) => `
+    <li class="character-card">
+        <h2>${name}</h2>
+        <p>${race}</p>
     </li>
     `
     )
