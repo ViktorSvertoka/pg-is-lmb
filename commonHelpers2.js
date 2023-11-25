@@ -1,11 +1,7 @@
-import"./assets/modulepreload-polyfill-3cfb730f.js";/* empty css                     */const t={list:document.querySelector(".js-movie-list"),btnLoad:document.querySelector(".js-load-more")};let i=499;t.btnLoad.addEventListener("click",d);function d(){i+=1,c(i).then(e=>{t.list.insertAdjacentHTML("beforeend",l(e.results)),(e.page>=500||e.page>=e.total_pages)&&t.btnLoad.classList.replace("load-more","load-more-hidden")})}function c(e=1){const n="https://api.themoviedb.org/3",o="trending/movie/week",s="345007f9ab440e5b86cef51be6397df1",r=new URLSearchParams({api_key:s,page:e});return console.log(r.toString()),fetch(`${n}/${o}?${r}`).then(a=>{if(!a.ok)throw new Error(a.statusText||"Error");return a.json()})}c().then(e=>{t.list.insertAdjacentHTML("afterbegin",l(e.results)),e.page<e.total_pages&&t.btnLoad.classList.replace("load-more-hidden","load-more")}).catch(e=>console.log(e));function l(e){return e.map(({poster_path:n,original_title:o,release_date:s,vote_average:r})=>`
-    <li class="movie-card">
-        <img src="https://image.tmdb.org/t/p/w300${n}" alt="${o}" />
+import"./assets/modulepreload-polyfill-3cfb730f.js";/* empty css                     */const a={list:document.querySelector(".js-movie-list"),btnLoad:document.querySelector(".js-load-more")};let e=1;const c=10;a.btnLoad.addEventListener("click",p);async function p(){try{e+=1;const t=await i(e,c);a.list.insertAdjacentHTML("beforeend",d(t.docs)),e>=t.totalPages&&a.btnLoad.classList.add("load-more-hidden")}catch(t){console.error(t)}}async function i(t=1,o=10){const r="https://the-one-api.dev/v2/",l="character",h="fVhH6jhxy5LdB6Ie2Y7P",m=new URLSearchParams({page:t,limit:o}),n=await fetch(`${r}${l}?${m}`,{headers:{Authorization:`Bearer ${h}`}});if(!n.ok)throw new Error(n.statusText||"Error");const s=await n.json();return{docs:s.docs,page:s.page,totalPages:Math.ceil(s.total/o)}}async function u(){try{const t=await i(e,c);a.list.insertAdjacentHTML("afterbegin",d(t.docs)),e<t.totalPages&&a.btnLoad.classList.remove("load-more-hidden")}catch(t){console.error(t)}}u();function d(t){return t.map(({name:o,race:r})=>`
+    <li class="character-card">
         <h2>${o}</h2>
-        <div class="movie-info">
-            <p>Release Date: ${s}</p>
-            <p>Vote Average: ${r}</p>
-        </div>
+        <p>${r}</p>
     </li>
     `).join("")}
 //# sourceMappingURL=commonHelpers2.js.map
