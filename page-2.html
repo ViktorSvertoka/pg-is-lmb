@@ -6,27 +6,19 @@
     
     <link rel="shortcut icon" href="/pg-is-lmb/assets/favicon-9562b06e.ico" />
     <title>Infinite Scroll</title>
-    <script type="module" crossorigin src="/pg-is-lmb/assets/modulepreload-polyfill-3cfb730f.js"></script>
+    <script type="module" crossorigin src="/pg-is-lmb/commonHelpers3.js"></script>
+    <link rel="modulepreload" crossorigin href="/pg-is-lmb/assets/modulepreload-polyfill-3cfb730f.js">
     <link rel="stylesheet" href="/pg-is-lmb/assets/index-4c1a8321.css">
   </head>
 
   <body>
-    <header class="header__infinite-scroll">
-      <a class="go__back-btn" href="./index.html">Go back</a>
+    <a class="go__back-btn" href="./index.html">Go back</a>
 
-      <h1>Infinite Scroll</h1>
+    <h1>Infinite Scroll</h1>
 
-      <form class="search-container">
-        <input
-          type="text"
-          id="search-bar"
-          name="searchQuery"
-          placeholder="What can I help you with today?"
-        />
-        <button type="submit">Search</button>
-      </form>
-    </header>
-    <div class="gallery"></div>
+    <div class="button-container">
+      <ul class="js-lotr-list"></ul>
+    </div>
 
     
   </body>
