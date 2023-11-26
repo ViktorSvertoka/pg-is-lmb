@@ -106,6 +106,17 @@ function updatePaginationButtons() {
     lastButton.dataset.page = totalPages.toString();
     elements.pagination.appendChild(lastButton);
   }
+
+  handleActivePageNumber();
 }
+
+const handleActivePageNumber = () => {
+  document.querySelectorAll('button').forEach((button, page) => {
+    button.classList.remove('active');
+    if (page + 1 === currentPage) {
+      button.classList.add('active');
+    }
+  });
+};
 
 initialize();
