@@ -1,0 +1,7 @@
+import"./assets/modulepreload-polyfill-3cfb730f.js";/* empty css                     */const o={list:document.querySelector(".js-lotr-list"),pagination:document.querySelector(".js-pagination")};let r=1;const p=10;let s=0;o.pagination.addEventListener("click",g);async function g(t){if(t.target.tagName==="BUTTON"){const n=parseInt(t.target.dataset.page);n&&n!==r&&(r=n,await d())}}async function d(){try{const t=await h(r,p);o.list.innerHTML=f(t.docs),s=t.totalPages,P()}catch(t){console.error(t)}}async function h(t=1,n=10){const e="https://the-one-api.dev/v2/",a="character",i="fVhH6jhxy5LdB6Ie2Y7P",u=new URLSearchParams({page:t,limit:n}),c=await fetch(`${e}${a}?${u}`,{headers:{Authorization:`Bearer ${i}`}});if(!c.ok)throw new Error(c.statusText||"Error");const l=await c.json();return{docs:l.docs,totalPages:Math.ceil(l.total/n)}}async function m(){await d()}function f(t){return t.map(({name:n,race:e})=>`
+      <li class="card-list">
+        <h2>${n}</h2>
+        <p>${e??"unknown"}</p>
+      </li>
+    `).join("")}function P(){o.pagination.innerHTML="";const t=10,n=Math.max(r-Math.floor(t/2),1),e=Math.min(n+t-1,s);if(n>1){const a=document.createElement("button");a.textContent="1",a.dataset.page="1",o.pagination.appendChild(a)}for(let a=n;a<=e;a++){const i=document.createElement("button");i.textContent=a,i.dataset.page=a,o.pagination.appendChild(i)}if(e<s){const a=document.createElement("button");a.textContent=s.toString(),a.dataset.page=s.toString(),o.pagination.appendChild(a)}}m();
+//# sourceMappingURL=commonHelpers4.js.map

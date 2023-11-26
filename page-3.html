@@ -5,32 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <link rel="shortcut icon" href="/pg-is-lmb/assets/favicon-9562b06e.ico" />
-    <title>Load More</title>
-    <script type="module" crossorigin src="/pg-is-lmb/assets/modulepreload-polyfill-3cfb730f.js"></script>
-    <link rel="stylesheet" href="/pg-is-lmb/assets/index-4c1a8321.css">
+    <title>Pagination</title>
+    <script type="module" crossorigin src="/pg-is-lmb/commonHelpers4.js"></script>
+    <link rel="modulepreload" crossorigin href="/pg-is-lmb/assets/modulepreload-polyfill-3cfb730f.js">
+    <link rel="stylesheet" href="/pg-is-lmb/assets/index-6f2ee9db.css">
   </head>
 
   <body>
-    <header class="header__infinite-scroll">
-      <a class="go__back-btn" href="./index.html">Go back</a>
+    <a class="go__back-btn" href="./index.html">Go back</a>
 
-      <h1>Load More</h1>
+    <h1>Pagination</h1>
 
-      <form class="search-container">
-        <input
-          type="text"
-          id="search-bar"
-          name="searchQuery"
-          placeholder="What can I help you with today?"
-        />
-        <button type="submit">Search</button>
-      </form>
-    </header>
-    <div class="gallery"></div>
-
-    <div class="btn__wrapper">
-      <button type="button" class="btn__load-more is-hidden">Load More</button>
+    <div class="button-container">
+      <ul class="js-lotr-list"></ul>
     </div>
+
+    <div class="js-pagination"></div>
 
     
   </body>
