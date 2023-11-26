@@ -1,5 +1,5 @@
 const elements = {
-  list: document.querySelector('.js-movie-list'),
+  list: document.querySelector('.js-lotr-list'),
   btnLoad: document.querySelector('.js-load-more'),
 };
 
@@ -16,7 +16,7 @@ async function handlerLoadMore() {
     elements.list.insertAdjacentHTML('beforeend', createMarkup(data.docs));
 
     if (page >= data.totalPages) {
-      elements.btnLoad.classList.add('load-more-hidden');
+      elements.btnLoad.classList.add('js-hidden');
     }
   } catch (error) {
     console.error(error);
@@ -59,7 +59,7 @@ async function initialize() {
     elements.list.insertAdjacentHTML('afterbegin', createMarkup(data.docs));
 
     if (page < data.totalPages) {
-      elements.btnLoad.classList.remove('load-more-hidden');
+      elements.btnLoad.classList.remove('js-hidden');
     }
   } catch (error) {
     console.error(error);
@@ -72,7 +72,7 @@ function createMarkup(arr) {
   return arr
     .map(
       ({ name, race }) => `
-    <li class="character-card">
+    <li class="card-list">
         <h2>${name}</h2>
         <p>${race}</p>
     </li>

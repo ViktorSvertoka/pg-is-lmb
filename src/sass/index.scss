@@ -295,13 +295,7 @@ h1 {
   }
 }
 
-.button-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.load-more-hidden {
+.js-hidden {
   display: none;
 }
 
@@ -325,7 +319,15 @@ h1 {
   transform: scale(1.05);
 }
 
-.character-card {
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-list {
+  width: 300px;
+  padding: 20px;
   margin-bottom: 20px;
   border: 4px solid tomato;
 }
