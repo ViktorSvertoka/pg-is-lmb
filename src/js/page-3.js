@@ -111,7 +111,7 @@ function updatePaginationButtons() {
 }
 
 const handleActivePageNumber = () => {
-  document.querySelectorAll('button').forEach((button, page) => {
+  document.querySelectorAll('.button').forEach((button, page) => {
     button.classList.remove('active');
     if (page + 1 === currentPage) {
       button.classList.add('active');
